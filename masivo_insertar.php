@@ -6,7 +6,7 @@
 */
 
 	/*Usted debe cambiar esto segun su configuracion del proyecto (ubicacion dentro del wampp y el puerto del pache*/
-	$URL_HOME = 'http://localhost:3600/Bd2_NoSQL2018_2/';
+	$URL_HOME = 'http://localhost:8080/tecnicaNoSQL/';
 
 	/*Se recuperan los argumentos*/
 	$bd = htmlspecialchars($_GET["bd"]);
@@ -128,7 +128,7 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 		$tiempo = $tiempo + rand ( 0 , 1 );
 		$velocidad = rand ( 30 , 90 );	
 		/*Arma la cadena del llamado*/
-		if($velocidad > 80){
+		if($velocidad > 0){
 			$url = 		$URL_HOME .
 						$bd . '/insertar.php'.
 						'?lugar='. $lugar .

@@ -11,6 +11,8 @@ if(is_null($placa) or is_null($fedesde) or is_null($fehasta)){
 $conn = new mysqli('localhost:3306', 'root', '','fotodeteccionesbd');
 if(!$conn)
     die("fallo conectando a la BD " . mysqli_connect_error());
+
+$time_start = microtime(true);
     
 $sql = "SELECT DATE(fecha) AS fecha, TIME(fecha) AS hora, nombre 
 FROM fotodetecciones 
@@ -63,5 +65,12 @@ $conn->close();
 			  </tbody>
 			</table>
 		</div>
+
+<?php
+$time_end = microtime(true); // Tiempo Final
+$time = $time_end - $time_start; // Tiempo Consumido
+echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";
+?>
+
 </body>
 </html>
