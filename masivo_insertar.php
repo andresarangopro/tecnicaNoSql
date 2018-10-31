@@ -6,7 +6,11 @@
 */
 
 	/*Usted debe cambiar esto segun su configuracion del proyecto (ubicacion dentro del wampp y el puerto del pache*/
+<<<<<<< HEAD
 	$URL_HOME = 'http://localhost:8080/tecnicaNoSQL/';
+=======
+	$URL_HOME = 'http://localhost:9090/tecnicaNoSql/';
+>>>>>>> 7bab6f3e0999579fdd590659930a8aaba3077ee2
 
 	/*Se recuperan los argumentos*/
 	$bd = htmlspecialchars($_GET["bd"]);

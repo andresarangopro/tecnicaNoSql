@@ -15,8 +15,7 @@ $time_start = microtime(true);
 $sql = "SELECT MAX(velocidad) AS velocidad, nombre 
 FROM fotodetecciones 
 INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares 
-WHERE Vehiculos_placa = '".$placa."' 
-GROUP BY nombre 
+WHERE Vehiculos_placa = '".$placa."'  
 ORDER BY velocidad DESC;";
 
 $result = $conn -> query($sql);

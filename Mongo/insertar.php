@@ -17,12 +17,12 @@ $hora = date('h:i:s',$tiempo);
 $nameLugar = htmlspecialchars($_GET["nameLugar"]);
 
 
-/*Validación de argumentos*/
+/*Validación de argumentos
 
 echo 'lugar='. 		$lugar .'</br>';
 echo 'placa='. 		$placa .'</br>';
 echo 'tiempo='. 	$tiempo .'</br>';
-echo 'velocidad='. 	$velocidad;'</br>';
+echo 'velocidad='. 	$velocidad;'</br>';*/
 
 
 

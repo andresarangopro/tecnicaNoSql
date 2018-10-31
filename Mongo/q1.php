@@ -1,7 +1,7 @@
 <?php if (!extension_loaded("MongoDB")) die("Error: la extensi�n de Mongo es requerida."); ?>
 
 <?php
-
+$time_start = microtime(true); // Tiempo Inicial Proceso
 $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
 $fedesde = htmlspecialchars($_GET["fedesde"]);
@@ -13,7 +13,7 @@ $filter =['$and'=>[[
 ];
 
 $options = [
-    'projection' => ['_id' => 0],
+    'projection' => ['_id' => 0,'lugar'=> 1,'fecha'=>1,'hora'=>1],
  ];
  
 $query = new MongoDB\Driver\Query($filter,$options);
@@ -59,7 +59,9 @@ $cursor = $manager->executeQuery('fotodeteccionesdb.fotoMultas', $query);
 			  </tbody>
 			</table>
 		</div>
-    
+        <?php $time_end = microtime(true); // Tiempo Final?>
+        <?php $time = $time_end - $time_start; // Tiempo Consumido?>
+        <?php echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";?>
 
 </body>
 </html>
