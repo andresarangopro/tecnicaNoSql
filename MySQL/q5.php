@@ -9,12 +9,13 @@ if(is_null($placa)){
 $conn = new mysqli('localhost:3306', 'root', '','fotodeteccionesbd');
 if(!$conn)
     die("fallo conectando a la BD " . mysqli_connect_error());
+
+$time_start = microtime(true);
     
 $sql = "SELECT MAX(velocidad) AS velocidad, nombre 
 FROM fotodetecciones 
 INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares 
-WHERE Vehiculos_placa = '".$placa."' 
-GROUP BY nombre 
+WHERE Vehiculos_placa = '".$placa."'  
 ORDER BY velocidad DESC;";
 
 $result = $conn -> query($sql);
@@ -40,7 +41,7 @@ $conn->close();
 <body>
 	<div class="container">
 		<div class="row">
-			<h2 style="text-align: center;"> Informacion de una Infraccion</h2>
+			<h2 style="text-align: center;"> Velocidad Maxima</h2>
 		</div>
 <div class="row table-responsive">
 			<table class="table table-striped">
@@ -61,5 +62,11 @@ $conn->close();
 			  </tbody>
 			</table>
 		</div>
+
+<?php
+$time_end = microtime(true); // Tiempo Final
+$time = $time_end - $time_start; // Tiempo Consumido
+echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";
+?>
 </body>
 </html>
