@@ -15,6 +15,12 @@ $query = new MongoDB\Driver\Command(['aggregate' => 'fotoMultas',
     [
         '$group' => ['_id'=>'$lugar','velocidad'=>['$max'=>'$velocidad']]
 
+    ],
+    [
+        '$sort' => ['_id' => 1]
+    ],
+    [
+        '$limit' => 1
     ]
 
     ],

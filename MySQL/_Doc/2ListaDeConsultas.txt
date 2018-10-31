@@ -1,0 +1,37 @@
+Q1:
+SELECT DATE(fecha) AS fecha, TIME(fecha) AS hora, nombre 
+FROM fotodetecciones 
+INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares
+WHERE Vehiculos_placa = '".$placa."' and fecha >= '".$fedesde."' and fecha <= '".$fehasta."';
+
+Q2:
+SELECT nombre, COUNT(*) AS pasadas 
+FROM fotodetecciones INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares 
+WHERE YEAR(fecha) = '".$anio."' AND MONTH(fecha) = '".$mes."' AND Vehiculos_placa = '".$placa."' 
+GROUP BY nombre;
+
+Q3:
+SELECT Vehiculos_placa, velocidad, TIME(fecha) AS hora 
+FROM fotodetecciones 
+WHERE Lugares_idLugares = '".$lugar."' AND DATE(fecha) = '".$fecha."';
+
+Q4:
+SELECT Vehiculos_placa, nombre, TIME(fecha) AS hora 
+FROM fotodetecciones 
+INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares 
+WHERE  DATE(fecha) = '".$fecha."';
+
+Q5: Dado una placa mostrar la velocidad maxima y en que lugar fue
+SELECT MAX(velocidad) AS velocidad, nombre 
+FROM fotodetecciones 
+INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares 
+WHERE Vehiculos_placa = '".$placa."' 
+GROUP BY nombre 
+ORDER BY velocidad DESC;
+
+Q6: Dado un lugar listar la placa y el numero de pasadas de cada vehiculo
+SELECT Vehiculos_placa, COUNT(*)  AS pasadas
+FROM fotodetecciones 
+WHERE Lugares_idLugares = '".$lugar."'
+GROUP BY Vehiculos_placa 
+ORDER BY pasadas DESC;

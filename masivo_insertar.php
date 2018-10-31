@@ -126,7 +126,7 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 		$placa = $listaPlacas[ rand ( 0 , $nroPlacas ) ];
 		$nameLugar = $listaLugares[$lugar];
 		$tiempo = $tiempo + rand ( 0 , 1 );
-		$velocidad = rand ( 30 , 90 );	
+		$velocidad = rand ( 80 , 100 );	
 		/*Arma la cadena del llamado*/
 		if($velocidad > 80){
 			$url = 		$URL_HOME .
