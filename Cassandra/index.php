@@ -181,25 +181,24 @@ div {
 <table>
 <tr><th colspan="3"><H1>Consultas Extra</H1></th></tr>
 <tr>
-	<td><H3>Consulta Informacion fotodetección</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Infracciones En Un Lugar</H3></td>
+	<td><H3>Velocidad máxima por vehiculo</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Infracciones En Un Lugar</H3></td>
 </tr>
 <tr>
 	<td>
 		<!-- Consulta velocidades por sitio - Recuerde cambiar la acción para llamar su programa -->
-		<form name="q3" action="consReporte_x_fechaylugar.php">
+		<form name="q5" action="velmaxima_x_vehiculo.php">
 		<table>
-		  <tr><td>Fecha:</td><td><input type="text" name="fecha" value="2018/10/01"  maxlength="10"></td></tr>
-		  <tr><td>Lugar:</td><td><input type="text" name="lugar" value="1"  maxlength="1"></td></tr>
-		  <tr><td colspan="2"><button class="button mi_color">Consulta velocidades por sitio</button></td></tr>
+		<tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="6"></td></tr>
+		  <tr><td colspan="2"><button class="button mi_color">Velocidad más alta placa</button></td></tr>
 		</table>  
 		</form>
 	</td>
 	<td></td>
 	<td>
 		<!-- Infracciones Velocidad - Recuerde cambiar la acción para llamar su programa -->
-		<form name="q4" action="consInfracciones_x_fecha.php">
+		<form name="q6" action="vehiculos_x_lugares.php">
 		<table>
-		  <tr><td>Fecha:</td><td><input type="text" name="fecha" value="2018/10/01"  maxlength="10"></td></tr>
+			<tr><td>Lugar:</td><td><input type="text" name="lugar" value="1"  maxlength="1"></td></tr>
 		  <tr><td colspan="2"><button class="button mi_color">Infracciones Velocidad</button></td></tr>
 		</table>  
 		</form>

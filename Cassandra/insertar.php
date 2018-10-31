@@ -16,9 +16,9 @@ $tiempo		= htmlspecialchars($_GET["tiempo"]);
 $fecha = date($tiempo);
 $mes = date('m',$fecha);
 $ano = date('Y',$fecha);
-//$tiempo = $tiempo*1000;
-$velocidad	= htmlspecialchars($_GET["velocidad"]);
 
+$velocidad	= htmlspecialchars($_GET["velocidad"]);
+//$tiempo = $tiempo*1000;
 
 /*Validación de argumentos*/
 /*
@@ -45,12 +45,12 @@ $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
 /*$q = "BEGIN BATCH	
 	  Insert into reportemensual_x_vehiculo (fecha, lugar,placa,velocidad) Values(saf,656532156,57,2532);
 	  APPLY BATCH;"; */
-	$batch -> add(
+	  $batch -> add(
 		"INSERT INTO infracciones_x_vehiculoyfecha(placa, fecha, id_fotodeteccion, nombre) VALUES ('${placa}', ${tiempo}, ${id_fotodeteccion}, '${nombre}')"
 	);
-	  
+	  	  
 	$batch -> add(
-		"INSERT INTO reporte_x_fechaylugar(id_lugar, fecha, id_fotodeteccion, placa, velocidad ) VALUES (${lugar},${tiempo},${id_fotodeteccion},'${placa}',${velocidad})"
+		"INSERT INTO reporte_x_fechaylugar(id_lugar, fecha,id_fotodeteccion , placa, velocidad ) VALUES (${lugar}, ${tiempo},${id_fotodeteccion},'${placa}',${velocidad})"
 	);
 	
 	$batch -> add(
@@ -58,14 +58,14 @@ $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
 		//"INSERT INTO informacion_x_fotodeteccion (id_fotodeteccion, placa, fecha, velocidad, nombre)VALUES (5,'${placa}',${tiempo},${velocidad},'asd');"
 	);
 	$batch -> add(
-		"INSERT INTO informacion_x_fotodeteccion (id_fotodeteccion, placa, fecha, velocidad, nombre)VALUES (${id_fotodeteccion},'${placa}',${tiempo},${velocidad},'${nombre}');"
+		"INSERT INTO velmaxima_x_vehiculo (placa, id_fotodeteccion, velocidad, nombre)VALUES ('${placa}',${id_fotodeteccion},${velocidad},'${nombre}');"
 	);	
 	$batchCounter -> add(
-		"UPDATE infraccionesusuario_x_lugar SET nombre += 1 WHERE  placa = '${placa}' AND id_fotodeteccion = ${id_fotodeteccion} "
+	"UPDATE vehiculos_x_lugares SET placa += 1 WHERE  id_fotodeteccion = ${id_fotodeteccion} AND id_lugar =${lugar}"
 	);
 
 	$batchCounter -> add(	
-		"UPDATE consolidadomensual_x_vehiculo SET nombre += 1 WHERE placa= '${placa}' AND mes = ${mes} AND ano = ${ano}"
+	"UPDATE consolidadomensual_x_vehiculo SET nombre += 1 WHERE placa= '${placa}'  AND mes = ${mes} AND ano = ${ano} AND id_lugar ='${nombre}' "
 	);
 
 /* ==--> insertar el o los registros*/

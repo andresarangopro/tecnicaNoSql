@@ -10,12 +10,12 @@ $cluster   = Cassandra::cluster()
 // Seleccionar la base de datos
 $session   = $cluster->connect("fotodeteccionesbd");
 $fechaDada = strtotime($_GET['fecha']);
-$endOfDay   = strtotime("tomorrow", $fechaDada);
-$statemen = new Cassandra\SimpleStatement("SELECT fecha, nombre, placa FROM infracciones_x_fecha WHERE dummy=22 AND fecha <=".$endOfDay."  AND fecha >=".$fechaDada.";");
+$stop_date = date('Y/m/d', strtotime($_GET['fecha']. ' +1 day'));
+$endOfDay   = strtotime($stop_date);
+$statemen = new Cassandra\SimpleStatement("SELECT fecha, nombre, placa FROM infracciones_x_fecha WHERE dummy=22 AND fecha <".$endOfDay."  AND fecha >=".$fechaDada.";");
 $result  = $session->execute($statemen);
 
 ?>
-
 
 <html>		
 <body>
@@ -37,18 +37,19 @@ $result  = $session->execute($statemen);
 				<thead>
 					<tr>
                         <th>PLACA</th>	
-                        <th>FECHA</th>                     
+                        <th>HORA</th>                     
                         <th>NOMBRE</th>					
 					</tr>
 				</thead>
 				<tbody>
                     <?php foreach ($result as $row) { 
                          $time = date( $row['fecha']);
-                         $fecha = date('m/d/Y',$time);                        
+                         $fecha = date('m/d/Y',$time);      
+                         $hora = date('h:i:s',$time);                    
                         ?>
                         <tr>     
                             <td><?php echo $row['placa'];?></td>   
-                            <td><?php echo $fecha;?></td>                                             
+                            <td><?php echo $hora;?></td>                                             
                             <td><?php echo $row['nombre'];?></td>
                         </tr>
                     <?php } ?>

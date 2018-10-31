@@ -12,7 +12,7 @@ $session   = $cluster->connect("fotodeteccionesbd");
 $ano = $_GET['anio'];
 $mes = $_GET['mes'];
 $placa = $_GET['placa'];
-$statemen = new Cassandra\SimpleStatement("SELECT nombre, id_fotodeteccion  FROM consolidadomensual_x_vehiculo WHERE placa= '".$placa."' AND ano=".$ano." AND mes=".$mes." ;");
+$statemen = new Cassandra\SimpleStatement("SELECT nombre, id_lugar FROM consolidadomensual_x_vehiculo WHERE placa= '".$placa."' AND ano=".$ano." AND mes=".$mes." ;");
 $result    = $session->execute($statemen);
 ?>
 
@@ -36,17 +36,15 @@ $result    = $session->execute($statemen);
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>ID FOTODETECCIÓN</th>
-                        <th>PLACA</th>	
-                        <th>REGISTROS</th>					
+                        <th>LUGAR</th>
+                        <th>PASOS</th>				
 					</tr>
 				</thead>
 				<tbody>
                     <?php foreach ($result as $row) {  ?>
                         <tr>   
-                            <td><?php echo $row['id_fotodeteccion'];?></td>  
-                            <td><?php echo $placa;?></td>                     
-                            <td><?php echo $row['nombre'];?></td>
+                            <td><?php echo $row['id_lugar'];?></td>      
+                            <td><?php echo $row['nombre'];?></td>                            
                         </tr>
                     <?php } ?>
 			  </tbody>

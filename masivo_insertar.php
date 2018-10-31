@@ -126,9 +126,8 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 		$placa = $listaPlacas[ rand ( 0 , $nroPlacas ) ];
 		$nameLugar = $listaLugares[$lugar];
 		$tiempo = $tiempo + rand ( 0 , 1 );
-		$velocidad = rand ( 30 , 90 );	
+		$velocidad = rand ( 80 , 90 );	
 		/*Arma la cadena del llamado*/
-		if($velocidad > 80){
 			$url = 		$URL_HOME .
 						$bd . '/insertar.php'.
 						'?lugar='. $lugar .
@@ -141,7 +140,7 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 			$contents = file_get_contents( $url );
 			/*Se imprime la fila de la tabla*/
 			echo "<tr><td>$i</td><td>".$url . "</td><td>" . $contents . "</td></tr>\n";
-		}
+		
 	}
 ?>
 </table>

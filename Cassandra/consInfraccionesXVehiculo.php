@@ -12,7 +12,7 @@ $session   = $cluster->connect("fotodeteccionesbd");
 $fedesde = strtotime($_GET['fedesde']);
 $fehasta = strtotime($_GET['fehasta']);
 $placa = $_GET['placa'];
-$statemen = new Cassandra\SimpleStatement("SELECT * FROM infracciones_x_vehiculoyfecha WHERE placa= '".$placa."' AND fecha>= ".$fedesde." AND fecha<= ".$fehasta." ;");
+$statemen = new Cassandra\SimpleStatement("SELECT * FROM infracciones_x_vehiculoyfecha WHERE placa= '".$placa."' AND fecha >= ".$fedesde." AND fecha<= ".$fehasta." ;");//AND fecha>= ".$fedesde." AND fecha<= ".$fehasta."
 $result    = $session->execute($statemen);
 ?>
 
@@ -43,12 +43,12 @@ $result    = $session->execute($statemen);
 				</thead>
 				<tbody>
                     <?php foreach ($result as $row) {                           
-                            $time = date( $row['fecha']);
+                            $time = date($row['fecha']);
                             $fecha = date('m/d/Y',$time);
                             $hora = date('h:i:s',$time);
                             ?>
                         <tr>
-                            <td><?php echo $fecha;?></td>
+                            <td><?php echo $fecha?></td>
                             <td><?php echo $hora;?></td>
                             <td><?php echo $row['nombre'];?></td>
                         </tr>
