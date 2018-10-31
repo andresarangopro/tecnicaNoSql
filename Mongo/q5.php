@@ -22,43 +22,49 @@ $query = new MongoDB\Driver\Command(['aggregate' => 'fotoMultas',
 ]);
 //Se hace la consulta especificando la base de datos y la coleccion
 $cursor = $manager->executeCommand('fotodeteccionesdb', $query);
+
+
+
 //print_r($cursor->toArray());
 //$readPreference = new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY);
 //$cursor = $manager->executeQuery('fotodeteccionesdb.fotoMultas', $query, $readPreference);
+?>
 
-echo '
-<html>
+<html>		
+<body>
 <head>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-<div class="row">
-    <h2 style="text-align: center;"> Consulta Infracciones</h2>
-</div>
+	<div class="container">
+		<div class="row">
+			<h2 style="text-align: center;"> Velocidad Maxima</h2>
+		</div>
 <div class="row table-responsive">
-<table class="table table-striped">
+			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>Lugar</th><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>	
-						<th>Velocidad</th><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>				
+                        <th>LUGAR</th>
+                        <th>VELOCIDAD</th>					
 					</tr>
 				</thead>
-				<tbody>';
-foreach ($cursor as $row) {
+				<tbody>
+                    <?php foreach ($cursor as $row) {  ?>
+                        <tr>   
+                            <td><?php echo $row ->_id;?></td>  
+                            <td><?php echo $row->velocidad;?></td>  
+                            
+                        </tr>
+                    <?php } ?>
+			  </tbody>
+			</table>
+		</div>
     
-	//var_dump( $row  );	
-    echo '<tr>';
-    echo '<td>' . $row ->_id. "</td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>";
-	echo '<td>' . $row->velocidad. "</td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>";
-	echo "</tr>"; 
-}
-echo '</tbody>
-</table>
-</div>
+
 </body>
-</html>';
+</html>
