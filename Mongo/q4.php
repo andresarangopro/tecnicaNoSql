@@ -7,7 +7,7 @@ $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 $fecha = htmlspecialchars($_GET["fecha"]);
 $filter = ['fecha' => $fecha];
 $options = [
-    'projection' => ['_id' => 0],
+    'projection' => ['_id' => 0,'hora'=>1,'lugar'=>1,'placa'=>1],
  ];
 
 $query = new MongoDB\Driver\Query($filter,$options);

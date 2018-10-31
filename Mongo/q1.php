@@ -13,7 +13,7 @@ $filter =['$and'=>[[
 ];
 
 $options = [
-    'projection' => ['_id' => 0],
+    'projection' => ['_id' => 0,'lugar'=> 1,'fecha'=>1,'hora'=>1],
  ];
  
 $query = new MongoDB\Driver\Query($filter,$options);

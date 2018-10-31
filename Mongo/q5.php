@@ -49,7 +49,7 @@ $cursor = $manager->executeCommand('fotodeteccionesdb', $query);
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>PLACA</th>
+                        <th>LUGAR</th>
                         <th>VELOCIDAD</th>					
 					</tr>
 				</thead>

@@ -8,7 +8,7 @@ $fecha = htmlspecialchars($_GET["fecha"]);
 $lugar = htmlspecialchars($_GET["lugar"]);
 $filter = ['$and' =>[['fecha' => $fecha],['lugar_id' => $lugar]]];
 $options = [
-    'projection' => ['_id' => 0],
+    'projection' => ['_id' => 0,'hora'=>1,'placa'=>'1','velocidad'=>1],
  ];
 
 $query = new MongoDB\Driver\Query($filter,$options);
