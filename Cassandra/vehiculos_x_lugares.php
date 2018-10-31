@@ -10,7 +10,7 @@ $cluster   = Cassandra::cluster()
 // Seleccionar la base de datos
 $session   = $cluster->connect("fotodeteccionesbd");
 $lugar = $_GET['lugar'];
-$statemen = new Cassandra\SimpleStatement(" SELECT placa FROM vehiculos_x_lugares WHERE id_lugar= ".$lugar." ;");
+$statemen = new Cassandra\SimpleStatement("SELECT placa,nombre FROM vehiculos_x_lugares WHERE id_lugar= ".$lugar." GROUP BY id_lugar,id_fotodeteccion,nombre;");
 
 $result  = $session->execute($statemen);
 ?>
@@ -35,8 +35,8 @@ $result  = $session->execute($statemen);
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>PLACA</th>	
-                        <th>FECHA</th>      				
+                        <th>PASOS</th>	
+                        <th>PLACA</th>			
 					</tr>
 				</thead>
 				<tbody>
@@ -44,6 +44,7 @@ $result  = $session->execute($statemen);
                         ?>
                         <tr>     
                             <td><?php echo $row['placa'];?></td>  
+                            <td><?php echo $row['nombre'];?></td>  
                         </tr>
                     <?php } ?>
 			  </tbody>

@@ -58,10 +58,10 @@ $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
 		//"INSERT INTO informacion_x_fotodeteccion (id_fotodeteccion, placa, fecha, velocidad, nombre)VALUES (5,'${placa}',${tiempo},${velocidad},'asd');"
 	);
 	$batch -> add(
-		"INSERT INTO velmaxima_x_vehiculo (placa, id_fotodeteccion, velocidad, nombre)VALUES ('${placa}',${id_fotodeteccion},${velocidad},'${nombre}');"
+		"INSERT INTO velmaxima_x_vehiculo (placa, nombre, id_fotodeteccion, velocidad)VALUES ('${placa}','${nombre}',${id_fotodeteccion},${velocidad});"
 	);	
 	$batchCounter -> add(
-	"UPDATE vehiculos_x_lugares SET placa += 1 WHERE  id_fotodeteccion = ${id_fotodeteccion} AND id_lugar =${lugar}"
+	"UPDATE vehiculos_x_lugares SET placa += 1 WHERE nombre='${placa}' AND id_fotodeteccion = ${id_fotodeteccion} AND id_lugar =${lugar}"
 	);
 
 	$batchCounter -> add(	

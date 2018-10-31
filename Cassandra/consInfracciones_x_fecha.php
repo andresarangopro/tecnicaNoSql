@@ -38,7 +38,7 @@ $result  = $session->execute($statemen);
 					<tr>
                         <th>PLACA</th>	
                         <th>HORA</th>                     
-                        <th>NOMBRE</th>					
+                        <th>LUGAR</th>					
 					</tr>
 				</thead>
 				<tbody>

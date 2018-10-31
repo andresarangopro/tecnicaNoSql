@@ -10,7 +10,7 @@ $cluster   = Cassandra::cluster()
 // Seleccionar la base de datos
 $session   = $cluster->connect("fotodeteccionesbd");
 $placa = $_GET['placa'];
-$statemen = new Cassandra\SimpleStatement("SELECT MAX(velocidad) as maxvelocity, nombre FROM velmaxima_x_vehiculo  WHERE placa = '".$placa."' ;");
+$statemen = new Cassandra\SimpleStatement("SELECT MAX(velocidad) as maxvelocity, nombre,id_fotodeteccion FROM velmaxima_x_vehiculo  WHERE placa = '".$placa."' ;");
 
 $result  = $session->execute($statemen);
 ?>
@@ -35,7 +35,7 @@ $result  = $session->execute($statemen);
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>PLACA</th>	
+                        <th>VELOCIDAD</th>	
                         <th>FECHA</th>      				
 					</tr>
 				</thead>
