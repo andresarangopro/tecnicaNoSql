@@ -111,7 +111,7 @@ div {
 <table>
 <tr><th colspan="3"><H1>Usuario</H1></th></tr>
 <tr>
-	<td><H3>Consulta Infracciones</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Estadistica Mensual</H3></td>
+	<td><H3>Consulta Infracciones</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Estadistica Mensual</H3></td><td><H3>Velocidad maxima</H3></td>
 </tr>
 <tr>
 	<td>
@@ -137,6 +137,16 @@ div {
 		</table>  
 		</form>
 	</td>
+	<td>
+		<!-- Velocidad maxima -->
+		<form name="q5" action="q5.php">
+		<table>
+		  <tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="4"></td></tr>
+		  <tr><td colspan="2"><button class="button mi_color">Velocidad maxima</button></td></tr>
+		</table>  
+		</form>
+	</td>
+	
 </tr>
 </table>
 </div>
@@ -146,7 +156,7 @@ div {
 <table>
 <tr><th colspan="3"><H1>Agente del transito</H1></th></tr>
 <tr>
-	<td><H3>Consulta velocidades por sitio</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Infracciones Velocidad</H3></td>
+	<td><H3>Consulta velocidades por sitio</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Infracciones Velocidad</H3></td><td><H3>Pasos por la placa</H3></td>
 </tr>
 <tr>
 	<td>
@@ -166,6 +176,15 @@ div {
 		<table>
 		  <tr><td>Fecha:</td><td><input type="text" name="fecha" value="2018/10/01"  maxlength="10"></td></tr>
 		  <tr><td colspan="2"><button class="button mi_color">Infracciones Velocidad</button></td></tr>
+		</table>  
+		</form>
+	</td>
+	<td>
+		<!-- Estadistica Mensual - Recuerde cambiar la acción para llamar su programa -->
+		<form name="q6" action="q6.php">
+		<table>
+		  <tr><td>Lugar:</td><td><input type="text" name="lugar" value="1"  maxlength="4"></td></tr>
+		  <tr><td colspan="2"><button class="button mi_color">Numero de pasos por vehiculo en el lugar</button></td></tr>
 		</table>  
 		</form>
 	</td>

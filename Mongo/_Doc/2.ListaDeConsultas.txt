@@ -1,0 +1,73 @@
+Q1:
+['$and'=>[[
+    'fecha' => ['$gt' => $fedesde],'fecha' =>[ '$lte' => $fehasta],
+    'placa' => $placa]]
+]
+
+['projection' => ['_id' => 0,'lugar'=> 1,'fecha'=>1,'hora'=>1]]
+
+Q2:
+['aggregate' => 'fotoMultas',
+'pipeline' => [
+    [
+        '$match' => [
+            'placa' => $placa,
+            'fecha' => [
+                '$gte' => $fechadesde, '$lte' => $fechahasta,
+            ]
+        ]
+    ],
+    [
+        '$group' => ['_id'=>'$lugar','pasos'=>['$sum'=>1]]
+
+    ]
+
+    ],
+    'cursor' => new stdClass,
+]
+
+Q3:
+['$and' =>[['fecha' => $fecha],['lugar_id' => $lugar]]]
+[
+    'projection' => ['_id' => 0,'hora'=>1,'placa'=>'1','velocidad'=>1],
+ ]
+
+Q4:
+['fecha' => $fecha]
+[
+    'projection' => ['_id' => 0,'hora'=>1,'lugar'=>1,'placa'=>1],
+]
+
+Q5:
+['aggregate' => 'fotoMultas',
+'pipeline' => [
+    [
+        '$match' => [
+            'placa' => $placa
+        ]
+    ],
+    [
+        '$group' => ['_id'=>'$lugar','velocidad'=>['$max'=>'$velocidad']]
+
+    ]
+
+    ],
+    'cursor' => new stdClass,
+]
+
+Q6:
+['aggregate' => 'fotoMultas',
+'pipeline' => [
+    [
+        '$match' => [
+            'lugar_id' => $lugar
+        ]
+    ],
+    [
+        '$group' => ['_id'=>'$placa','pasos'=>['$sum'=>1]]
+
+    ]
+
+    ],
+    'cursor' => new stdClass,
+]

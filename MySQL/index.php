@@ -112,12 +112,12 @@ div {
 <table>
 <tr><th colspan="3"><H1>Usuario</H1></th></tr>
 <tr>
-	<td><H3>Consulta Infracciones</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Estadistica Mensual</H3></td>
+	<td><H3>Consulta Infracciones</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Estadistica Mensual</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Velocidad maxima</H3></td>
 </tr>
 <tr>
 	<td>
 		<!-- Consulta Infracciones - Recuerde cambiar la acción para llamar su programa -->
-		<form name="q1" action="">
+		<form name="q1" action="q1.php">
 		<table>
 		  <tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="6"></td></tr>
 		  <tr><td>Fecha desde:</td><td><input type="text" name="fedesde" value="2018/10/01"  maxlength="10"></td></tr>
@@ -129,12 +129,22 @@ div {
 	<td></td>
 	<td>
 		<!-- Estadistica Mensual - Recuerde cambiar la acción para llamar su programa -->
-		<form name="q2" action="">
+		<form name="q2" action="q2.php">
 		<table>
 		  <tr><td>Año:</td><td><input type="text" name="anio" value="2018"  maxlength="4"></td></tr>
 		  <tr><td>Mes:</td><td><input type="text" name="mes" value="10"  maxlength="2"></td></tr>
 		  <tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="6"></td></tr>
 		  <tr><td colspan="2"><button class="button mi_color">Estadistica Mensual</button></td></tr>
+		</table>  
+		</form>
+	</td>
+	<td></td>
+	<td>
+		<!-- Dado una placa mostrar la velocidad maxima y en que lugar fue -->
+		<form name="q5" action="q5.php">
+		<table>
+		  <tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="6"></td></tr>
+		  <tr><td colspan="2"><button class="button mi_color">Velocidad maxima</button></td></tr>
 		</table>  
 		</form>
 	</td>
@@ -147,12 +157,12 @@ div {
 <table>
 <tr><th colspan="3"><H1>Agente del transito</H1></th></tr>
 <tr>
-	<td><H3>Consulta velocidades por sitio</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Infracciones Velocidad</H3></td>
+	<td><H3>Consulta velocidades por sitio</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Infracciones Velocidad</H3></td><td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td><H3>Vehiculos por lugar</H3></td>
 </tr>
 <tr>
 	<td>
 		<!-- Consulta velocidades por sitio - Recuerde cambiar la acción para llamar su programa -->
-		<form name="q3" action="">
+		<form name="q3" action="q3.php">
 		<table>
 		  <tr><td>Fecha:</td><td><input type="text" name="fecha" value="2018/10/01"  maxlength="10"></td></tr>
 		  <tr><td>Lugar:</td><td><input type="text" name="lugar" value="1"  maxlength="1"></td></tr>
@@ -163,10 +173,20 @@ div {
 	<td></td>
 	<td>
 		<!-- Infracciones Velocidad - Recuerde cambiar la acción para llamar su programa -->
-		<form name="q4" action="">
+		<form name="q4" action="q4.php">
 		<table>
 		  <tr><td>Fecha:</td><td><input type="text" name="fecha" value="2018/10/01"  maxlength="10"></td></tr>
 		  <tr><td colspan="2"><button class="button mi_color">Infracciones Velocidad</button></td></tr>
+		</table>  
+		</form>
+	</td>
+	<td></td>
+	<td>
+		<!-- Dado un lugar listar la placa y el numero de pasadas de cada vehiculo -->
+		<form name="q6" action="q6.php">
+		<table>
+		  <tr><td>Lugar:</td><td><input type="text" name="lugar" value="1"  maxlength="4"></td></tr>
+		  <tr><td colspan="2"><button class="button mi_color">Vehiculos por lugar</button></td></tr>
 		</table>  
 		</form>
 	</td>

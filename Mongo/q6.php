@@ -4,21 +4,27 @@
 $time_start = microtime(true); // Tiempo Inicial Proceso
 $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
-$fedesde = htmlspecialchars($_GET["fedesde"]);
-$fehasta = htmlspecialchars($_GET["fehasta"]);
-$placa = htmlspecialchars($_GET["placa"]);
-$filter =['$and'=>[[
-    'fecha' => ['$gt' => $fedesde],'fecha' =>[ '$lte' => $fehasta],
-    'placa' => $placa]]
-];
+$lugar = htmlspecialchars($_GET["lugar"]);
+$query = new MongoDB\Driver\Command(['aggregate' => 'fotoMultas',
+'pipeline' => [
+    [
+        '$match' => [
+            'lugar_id' => $lugar
+        ]
+    ],
+    [
+        '$group' => ['_id'=>'$placa','pasos'=>['$sum'=>1]]
 
-$options = [
-    'projection' => ['_id' => 0,'lugar'=> 1,'fecha'=>1,'hora'=>1],
- ];
- 
-$query = new MongoDB\Driver\Query($filter,$options);
+    ]
+
+    ],
+    'cursor' => new stdClass,
+]);
 //Se hace la consulta especificando la base de datos y la coleccion
-$cursor = $manager->executeQuery('fotodeteccionesdb.fotoMultas', $query);
+$cursor = $manager->executeCommand('fotodeteccionesdb', $query);
+
+
+
 //print_r($cursor->toArray());
 //$readPreference = new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY);
 //$cursor = $manager->executeQuery('fotodeteccionesdb.fotoMultas', $query, $readPreference);
@@ -37,23 +43,22 @@ $cursor = $manager->executeQuery('fotodeteccionesdb.fotoMultas', $query);
 <body>
 	<div class="container">
 		<div class="row">
-			<h2 style="text-align: center;"> Consulta Infracciones</h2>
+			<h2 style="text-align: center;"> Pasos de Vehiculos por lugar</h2>
 		</div>
 <div class="row table-responsive">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>FECHA</th>
-                        <th>HORA</th>	
-                        <th>LUGAR</th>					
+                        <th>PLACA</th>
+                        <th>PASOS</th>					
 					</tr>
 				</thead>
 				<tbody>
                     <?php foreach ($cursor as $row) {  ?>
                         <tr>   
-                            <td><?php echo $row ->fecha;?></td>  
-                            <td><?php echo $row->hora;?></td>                     
-                            <td><?php echo $row->lugar;?></td>
+                            <td><?php echo $row ->_id;?></td>  
+                            <td><?php echo $row->pasos;?></td>  
+                            
                         </tr>
                     <?php } ?>
 			  </tbody>
@@ -65,4 +70,3 @@ $cursor = $manager->executeQuery('fotodeteccionesdb.fotoMultas', $query);
 
 </body>
 </html>
-
