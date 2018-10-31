@@ -43,13 +43,13 @@ $cursor = $manager->executeCommand('fotodeteccionesdb', $query);
 <body>
 	<div class="container">
 		<div class="row">
-			<h2 style="text-align: center;"> Numero de pasos por vehiculo en el lugar</h2>
+			<h2 style="text-align: center;"> Pasos de Vehiculos por lugar</h2>
 		</div>
 <div class="row table-responsive">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>LUGAR</th>
+                        <th>PLACA</th>
                         <th>PASOS</th>					
 					</tr>
 				</thead>

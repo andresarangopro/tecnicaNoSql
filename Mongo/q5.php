@@ -23,9 +23,7 @@ $query = new MongoDB\Driver\Command(['aggregate' => 'fotoMultas',
 //Se hace la consulta especificando la base de datos y la coleccion
 $cursor = $manager->executeCommand('fotodeteccionesdb', $query);
 
-$time_end = microtime(true); // Tiempo Final
-$time = $time_end - $time_start; // Tiempo Consumido
-echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";
+
 
 //print_r($cursor->toArray());
 //$readPreference = new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY);
@@ -51,7 +49,7 @@ echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";
 			<table class="table table-striped">
 				<thead>
 					<tr>
-                        <th>LUGAR</th>
+                        <th>PLACA</th>
                         <th>VELOCIDAD</th>					
 					</tr>
 				</thead>
