@@ -4,10 +4,12 @@
 	Version 1.0 - 2018/10/04
 	Tecnicas avanzadas de base de datos - UDEM
 */
+
 $cluster   = Cassandra::cluster()
                ->withContactPoints('127.0.0.1')
                ->build();
 // Seleccionar la base de datos
+$time_start = microtime(true); // Tiempo Inicial Proceso
 $session   = $cluster->connect("fotodeteccionesbd");
 $ano = $_GET['anio'];
 $mes = $_GET['mes'];
@@ -50,7 +52,10 @@ $result    = $session->execute($statemen);
 			  </tbody>
 			</table>
 		</div>
-    
+        <?php $time_end = microtime(true); // Tiempo Final?>
+        <?php $time = $time_end - $time_start; // Tiempo Consumido?>
+        <?php echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";?>
+
 
 </body>
 </html>

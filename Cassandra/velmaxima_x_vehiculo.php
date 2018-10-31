@@ -8,6 +8,7 @@ $cluster   = Cassandra::cluster()
                ->withContactPoints('127.0.0.1')
                ->build();
 // Seleccionar la base de datos
+$time_start = microtime(true); // Tiempo Inicial Proceso
 $session   = $cluster->connect("fotodeteccionesbd");
 $placa = $_GET['placa'];
 $statemen = new Cassandra\SimpleStatement("SELECT MAX(velocidad) as maxvelocity, nombre,id_fotodeteccion FROM velmaxima_x_vehiculo  WHERE placa = '".$placa."' ;");
@@ -50,7 +51,9 @@ $result  = $session->execute($statemen);
 			  </tbody>
 			</table>
 		</div>
-    
+        <?php $time_end = microtime(true); // Tiempo Final?>
+        <?php $time = $time_end - $time_start; // Tiempo Consumido?>
+        <?php echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";?>                 
 
 </body>
 </html>

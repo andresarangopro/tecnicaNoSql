@@ -1,4 +1,5 @@
 <?php
+
 $anio = htmlspecialchars($_GET["anio"]);
 $mes = htmlspecialchars($_GET["mes"]);
 $placa = htmlspecialchars($_GET["placa"]);
@@ -8,10 +9,10 @@ if(is_null($anio) or is_null($mes) or is_null($placa)){
     exit(0);
 }
 
-$conn = new mysqli('localhost:3306', 'root', '','fotodeteccionesbd');
+$conn = new mysqli('localhost:3306', 'root', 'your','fotodeteccionesbd');
 if(!$conn)
     die("fallo conectando a la BD " . mysqli_connect_error());
-    
+$time_start = microtime(true); // Tiempo Inicial Proceso   
 $sql = "SELECT nombre, COUNT(*) AS pasadas 
 FROM fotodetecciones INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares 
 WHERE YEAR(fecha) = '".$anio."' AND MONTH(fecha) = '".$mes."' AND Vehiculos_placa = '".$placa."' 
@@ -61,5 +62,9 @@ $conn->close();
 			  </tbody>
 			</table>
 		</div>
+        <?php $time_end = microtime(true); // Tiempo Final?>
+        <?php $time = $time_end - $time_start; // Tiempo Consumido?>
+        <?php echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";?>
+
 </body>
 </html>

@@ -26,7 +26,7 @@ echo 'velocidad='. 	$velocidad;'</br>';
 
 // Create connection (Puerto, Usuario, Clave y base datos)
 //$conn = new mysqli('localhost:3306', 'root', '','fotodeteccionesbd');
-$conn = new mysqli('localhost:3306', 'root', '','fotodeteccionesbd');
+$conn = new mysqli('localhost:3306', 'root', 'your','fotodeteccionesbd');
 if(!$conn)
 	die("fallo conectando a la BD " . mysqli_connect_error());
 

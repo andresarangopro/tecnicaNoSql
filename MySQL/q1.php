@@ -1,4 +1,5 @@
 <?php
+
 $placa = htmlspecialchars($_GET["placa"]);
 $fedesde = htmlspecialchars($_GET["fedesde"]);
 $fehasta = htmlspecialchars($_GET["fehasta"]);
@@ -8,10 +9,12 @@ if(is_null($placa) or is_null($fedesde) or is_null($fehasta)){
     exit(0);
 }
 
-$conn = new mysqli('localhost:3306', 'root', '','fotodeteccionesbd');
+$conn = new mysqli('localhost:3306', 'root', 'your','fotodeteccionesbd');
 if(!$conn)
     die("fallo conectando a la BD " . mysqli_connect_error());
     
+$time_start = microtime(true); // Tiempo Inicial Proceso   
+
 $sql = "SELECT DATE(fecha) AS fecha, TIME(fecha) AS hora, nombre 
 FROM fotodetecciones 
 INNER JOIN lugares ON fotodetecciones.Lugares_idLugares = lugares.idLugares
@@ -63,5 +66,9 @@ $conn->close();
 			  </tbody>
 			</table>
 		</div>
+        <?php $time_end = microtime(true); // Tiempo Final?>
+        <?php $time = $time_end - $time_start; // Tiempo Consumido?>
+        <?php echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";?>
+
 </body>
 </html>

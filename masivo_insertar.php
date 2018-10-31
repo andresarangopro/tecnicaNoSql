@@ -4,19 +4,15 @@
 	Version 1.0 - 2018/10/04
 	Tecnicas avanzadas de base de datos - UDEM
 */
-
 	/*Usted debe cambiar esto segun su configuracion del proyecto (ubicacion dentro del wampp y el puerto del pache*/
-	$URL_HOME = 'http://localhost:9090/tecnicaNoSql/';
-
+	$URL_HOME = 'http://localhost:3600/Bd2_NoSQL2018_2/';
 	/*Se recuperan los argumentos*/
 	$bd = htmlspecialchars($_GET["bd"]);
 	$registros = htmlspecialchars($_GET["registros"]);
-
 	if( $registros < 1 or $registros > 9999999 ){
 		echo "Error en el número de registros a generar. Valor=".$registros;
 		exit(0);
 	}
-
 	/*Lista de Placas*/
 	$listaPlacas = array(	
 					"AAA111", "BBB111", "CCC111",
@@ -75,13 +71,11 @@ div {
 	font-size: 11px;
 	padding: .2em 1em .275em;
 }
-
 table, th, td {
 	color: black;
     border: 1px solid black;
     border-collapse: collapse;
 }
-
 /* blue */
 .blue {
 	color: #d9eef7;
@@ -103,7 +97,6 @@ table, th, td {
 	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
 }
-
 </style>
 </head>
 <body>
@@ -117,10 +110,11 @@ table, th, td {
 </tr>
 <?php
 $time_start = microtime(true); // Tiempo Inicial Proceso
-
 	/*Ciclo*/
+	$d = 5000;
 	for( $i= 1 ; $i <= $registros ; $i++ ) {	
 		/*Genera los valores de forma aleatoria*/
+		$d =$d+$i;
 		$lugar = rand ( 0 , 9 );
 		$id_fotodeteccion = rand (0, 99);
 		$placa = $listaPlacas[ rand ( 0 , $nroPlacas ) ];
@@ -131,7 +125,7 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 			$url = 		$URL_HOME .
 						$bd . '/insertar.php'.
 						'?lugar='. $lugar .
-						'&id_fotodeteccion='. $i.
+						'&id_fotodeteccion='.$d.
 						'&nameLugar='. $nameLugar .
 						'&placa='. $placa .
 						'&tiempo='. $tiempo .

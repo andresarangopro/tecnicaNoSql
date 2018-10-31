@@ -141,7 +141,7 @@ div {
 		<!-- Velocidad maxima -->
 		<form name="q5" action="q5.php">
 		<table>
-		  <tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="4"></td></tr>
+		  <tr><td>Placa:</td><td><input type="text" name="placa" value="AAA111"  maxlength="6"></td></tr>
 		  <tr><td colspan="2"><button class="button mi_color">Velocidad maxima</button></td></tr>
 		</table>  
 		</form>

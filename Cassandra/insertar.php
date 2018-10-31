@@ -6,7 +6,6 @@
 	
 	Nota: En Archivo donde no hay que contabilizar los tiempos
 */
-
 /*Se recuperan los argumentos*/
 $lugar		= htmlspecialchars($_GET["lugar"]);
 $id_fotodeteccion = htmlspecialchars($_GET["id_fotodeteccion"]);
@@ -16,10 +15,8 @@ $tiempo		= htmlspecialchars($_GET["tiempo"]);
 $fecha = date($tiempo);
 $mes = date('m',$fecha);
 $ano = date('Y',$fecha);
-
 $velocidad	= htmlspecialchars($_GET["velocidad"]);
 //$tiempo = $tiempo*1000;
-
 /*Validación de argumentos*/
 /*
 echo 'lugar='. 		$lugar .'</br>';
@@ -27,21 +24,15 @@ echo 'placa='. 		$placa .'</br>';
 echo 'tiempo='. 	$tiempo .'</br>';
 echo 'velocidad='. 	$velocidad;'</br>';
 */
-
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
-
 $cluster   = Cassandra::cluster()
                ->withContactPoints('127.0.0.1')
                ->build();
 // Seleccionar la base de datos
 $session   = $cluster->connect("fotodeteccionesbd");
-
-
 /* ==--> Se arma el Batch*/
 $batch = new Cassandra\BatchStatement(Cassandra::BATCH_UNLOGGED);
 $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
-
-
 /*$q = "BEGIN BATCH	
 	  Insert into reportemensual_x_vehiculo (fecha, lugar,placa,velocidad) Values(saf,656532156,57,2532);
 	  APPLY BATCH;"; */
@@ -63,14 +54,10 @@ $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
 	$batchCounter -> add(
 	"UPDATE vehiculos_x_lugares SET placa += 1 WHERE nombre='${placa}' AND id_fotodeteccion = ${id_fotodeteccion} AND id_lugar =${lugar}"
 	);
-
 	$batchCounter -> add(	
 	"UPDATE consolidadomensual_x_vehiculo SET nombre += 1 WHERE placa= '${placa}'  AND mes = ${mes} AND ano = ${ano} AND id_lugar ='${nombre}' "
 	);
-
 /* ==--> insertar el o los registros*/
-
-
 //$statement = new Cassandra\SimpleStatement($q);
 $session->execute($batch);
 $session->execute($batchCounter);
